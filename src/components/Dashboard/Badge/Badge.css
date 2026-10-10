@@ -1,0 +1,44 @@
+.api-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 5px 9px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+.api-badge-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.api-badge.online {
+  color: #15803d;
+  background-color: #dcfce7;
+}
+
+.api-badge.online .api-badge-dot {
+  background-color: #22c55e;
+}
+
+.api-badge.offline {
+  color: #b91c1c;
+  background-color: #fee2e2;
+}
+
+.api-badge.offline .api-badge-dot {
+  background-color: #ef4444;
+}
+
+.api-badge.checking {
+  color: #64748b;
+  background-color: #f1f5f9;
+}
+
+.api-badge.checking .api-badge-dot {
+  background-color: #94a3b8;
+}

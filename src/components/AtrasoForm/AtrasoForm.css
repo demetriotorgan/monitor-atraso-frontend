@@ -1,0 +1,73 @@
+
+.atraso-form-container {
+  width: 100%;
+  padding: 16px;
+}
+
+.atraso-form-title {
+  margin-bottom: 8px;
+  color: #243247;
+  font-family: var(--font-primary);
+  font-size: 22px;
+  font-weight: 700;
+}
+
+.atraso-form-description {
+  margin-bottom: 24px;
+  color: #64748B;
+  font-family: var(--font-secondary);
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+.atraso-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.atraso-form-field {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.atraso-aluno-fieldset {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  min-width: 0;
+  padding: 16px;
+  border: 1px solid #E2E8F0;
+  border-radius: 8px;
+}
+
+.atraso-aluno-fieldset legend {
+  padding: 0 6px;
+  color: #243247;
+  font-family: var(--font-primary);
+  font-size: 15px;
+  font-weight: 600;
+}
+
+.form-textarea {
+  display: block;
+  width: 100%;
+  min-height: 100px;
+  padding: 10px 12px;
+  border: 1px solid #CBD5E1;
+  border-radius: 8px;
+  background-color: #FFFFFF;
+  color: #243247;
+  font-family: var(--font-secondary);
+  font-size: 16px;
+  line-height: 1.5;
+  resize: vertical;
+  outline: none;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.form-textarea:focus {
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px rgba(35, 115, 244, 0.15);
+}

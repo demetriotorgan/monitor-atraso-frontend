@@ -12,7 +12,7 @@ const formularioInicial = {
 
 type TipoMensagem = 'sucesso' | 'erro';
 
-export function useAluno() {
+export function useCadastrarAluno() {
   const [formulario, setFormulario] = useState(formularioInicial);
 
   const [enviando, setEnviando] = useState(false);

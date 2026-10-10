@@ -22,3 +22,8 @@ export async function salvarAluno(aluno: NovoAluno) {
     return response.data;
 }
 
+export async function getAlunos() {
+    const response = await api.get('/alunos/');
+    return response.data;
+}
+

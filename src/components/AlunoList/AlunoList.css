@@ -1,0 +1,24 @@
+.aluno-list {
+    width: 100%;
+    padding: 16px;
+    box-sizing: border-box;
+}
+
+.aluno-list__titulo {
+    margin: 0 0 16px;
+    font-size: 1.25rem;
+}
+
+.aluno-list__cards {
+    display: grid;
+    grid-template-columns: repeat(
+        auto-fit,
+        minmax(min(100%, 280px), 1fr)
+    );
+    gap: 16px;
+}
+
+.aluno-list__mensagem {
+    padding: 16px;
+    color: #475569;
+}

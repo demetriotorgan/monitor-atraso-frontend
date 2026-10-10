@@ -1,4 +1,4 @@
-import { UserRoundPlus, ClockAlert, ClipboardList } from 'lucide-react'
+import { UserRoundPlus, ClockAlert, ClipboardList, ListTodo } from 'lucide-react'
 
 import NavCard from '../../NavCard/NavCard'
 import './Painel.css'
@@ -24,6 +24,11 @@ const Painel = () => {
                 icone={UserRoundPlus}
                 to="/alunos/novo"
             />
+            <NavCard
+                nome="Ver alunos"
+                icone={ListTodo}
+                to="/alunos"
+            />            
         </div>
     )
 }

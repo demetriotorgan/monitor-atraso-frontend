@@ -2,10 +2,10 @@ import { User } from "lucide-react"
 
 import Spinner from "../Spinner/Spinner";
 import Resultado from "../Resultado/Resultado";
-import { useAluno } from "../../hooks/useAluno";
+import { useCadastrarAluno } from "../../hooks/useCadastrarAluno";
 
 const AlunoForm = () => {
-const {formulario, handleChange, handleSubmit, enviando, mensagem, tipoMensagem, fecharMensagem} = useAluno();
+const {formulario, handleChange, handleSubmit, enviando, mensagem, tipoMensagem, fecharMensagem} = useCadastrarAluno();
 
   return (
     <>

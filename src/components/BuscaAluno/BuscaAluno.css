@@ -1,0 +1,121 @@
+.busca-aluno {
+    position: relative;
+    width: 100%;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.busca-aluno__label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 600;
+}
+
+.busca-aluno__campo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    width: 100%;
+    padding: 0 12px;
+    border: 1px solid #cbd5e1;
+    border-radius: 10px;
+    background: #fff;
+    color: #475569;
+    margin-bottom: 15px;
+}
+
+.busca-aluno__campo:focus-within {
+    border-color: #2373f4;
+    box-shadow: 0 0 0 3px rgb(35 115 244 / 12%);
+}
+
+.busca-aluno__campo input {
+    flex: 1;
+    min-width: 0;
+    padding: 12px 0;
+    border: none;
+    outline: none;
+    background: transparent;
+    color: #1e293b;
+    font: inherit;
+}
+
+.busca-aluno__campo input::placeholder {
+    color: #94a3b8;
+}
+
+.busca-aluno__limpar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 5px;
+    border: none;
+    border-radius: 6px;
+    background: transparent;
+    color: #64748b;
+    cursor: pointer;
+}
+
+.busca-aluno__limpar:hover {
+    background: #f1f5f9;
+}
+
+.busca-aluno__resultados {
+    position: absolute;
+    top: calc(100% + 4px);
+    right: 0;
+    left: 0;
+    z-index: 10;
+    max-height: 240px;
+    overflow-y: auto;
+    border: 1px solid #e2e8f0;
+    border-radius: 10px;
+    background: #fff;
+    box-shadow: 0 8px 20px rgb(15 23 42 / 12%);
+}
+
+.busca-aluno__opcao {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    width: 100%;
+    padding: 12px 14px;
+    border: none;
+    border-bottom: 1px solid #f1f5f9;
+    background: #fff;
+    color: #1e293b;
+    text-align: left;
+    cursor: pointer;
+}
+
+.busca-aluno__opcao:last-child {
+    border-bottom: none;
+}
+
+.busca-aluno__opcao:hover,
+.busca-aluno__opcao:focus-visible {
+    background: #eff6ff;
+    outline: none;
+}
+
+.busca-aluno__opcao span {
+    flex-shrink: 0;
+    color: #64748b;
+    font-size: 0.875rem;
+}
+
+.busca-aluno__mensagem {
+    margin: 0;
+    padding: 14px;
+    color: #64748b;
+    font-size: 0.9rem;
+}
+
+.busca-aluno__mensagem--erro {
+    color: #b91c1c;
+}
+
+.busca-aluno__selecionado {
+    margin-top: 16px;
+}

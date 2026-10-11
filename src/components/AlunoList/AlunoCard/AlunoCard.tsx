@@ -30,14 +30,13 @@ const AlunoCard = ({ aluno, onDelete }: AlunoCardProps) => {
                     {aluno.responsavel}
                 </p>
 
-                <p>
+                <div>
                     <strong>Telefone:</strong>{' '}
-                    <div className='aluno-info'>
+                    <span className="aluno-info">
                         <Smartphone />
                         {aluno.telefone_responsavel}
-                    </div>
-
-                </p>
+                    </span>
+                </div>
             </div>
 
             <div className="aluno-card__acoes">

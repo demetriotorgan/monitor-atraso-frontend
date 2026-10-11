@@ -27,3 +27,16 @@ export async function getAlunos() {
     return response.data;
 }
 
+export async function deleteAluno(id:number){
+    const response = await api.delete(`/alunos/${id}`);
+    return response.data
+}
+
+export async function buscarAlunoPorNome(nome:string){
+    const response = await api.get('/alunos/',{
+        params:{nome}
+    });
+    return response.data
+}
+
+

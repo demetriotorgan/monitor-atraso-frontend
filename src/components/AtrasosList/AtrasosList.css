@@ -1,0 +1,247 @@
+
+/* Listagem de atrasos */
+
+.atrasos-list {
+    width: 100%;
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 20px 16px;
+    box-sizing: border-box;
+}
+
+.atraso-list_titulo {
+    margin: 15px 0 20px;
+    color: var(--color-primary);
+    font-size: 1.5rem;
+    font-weight: 700;
+}
+
+.atraso-list_cards {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+/* Card */
+
+.atraso-card {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 18px;
+    background: #ffffff;
+    border: 1px solid #e1e9f5;
+    border-left: 5px solid var(--color-primary);
+    border-radius: 14px;
+    box-shadow: 0 3px 10px rgb(35 115 244 / 8%);
+    color: #263449;
+}
+
+/* Cabeçalho */
+
+.atraso-card__header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 12px;
+    margin-bottom: 16px;
+}
+
+.atraso-card__aluno {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    min-width: 0;
+}
+
+.atraso-card__avatar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    width: 46px;
+    height: 46px;
+    color: var(--color-primary);
+    background: #edf4ff;
+    border-radius: 50%;
+}
+
+.atraso-card__identificacao {
+    min-width: 0;
+}
+
+.atraso-card__identificacao h3 {
+    margin: 0 0 5px;
+    color: var(--color-primary);
+    font-size: 1.05rem;
+    font-weight: 700;
+    overflow-wrap: anywhere;
+}
+
+.atraso-card__identificacao span {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    color: #69788d;
+    font-size: 0.8rem;
+}
+
+/* Status da notificação */
+
+.atraso-card__status {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    flex-shrink: 0;
+    padding: 6px 9px;
+    border-radius: 20px;
+    font-size: 0.72rem;
+    font-weight: 700;
+}
+
+.atraso-card__status--enviada {
+    color: #176447;
+    background: #e4f7ed;
+}
+
+.atraso-card__status--pendente {
+    color: #745900;
+    background: var(--color-highlight);
+}
+
+/* Data e hora */
+
+.atraso-card__data {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    margin-bottom: 18px;
+    padding: 11px 12px;
+    color: #ffffff;
+    background: var(--color-primary);
+    border-radius: 9px;
+    font-size: 0.9rem;
+    font-weight: 600;
+}
+
+.atraso-card__data svg {
+    flex-shrink: 0;
+    color: var(--color-accent);
+}
+
+/* Informações */
+
+.atraso-card__conteudo {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    padding-bottom: 18px;
+}
+
+.atraso-card__campo {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    min-width: 0;
+}
+
+.atraso-card__campo > svg {
+    flex-shrink: 0;
+    margin-top: 2px;
+    color: var(--color-primary-light);
+}
+
+.atraso-card__campo > div {
+    min-width: 0;
+}
+
+.atraso-card__label {
+    display: block;
+    margin-bottom: 4px;
+    color: #718096;
+    font-size: 0.78rem;
+    font-weight: 500;
+}
+
+.atraso-card__campo p {
+    margin: 0;
+    color: #263449;
+    font-size: 0.92rem;
+    line-height: 1.5;
+    overflow-wrap: anywhere;
+}
+
+.atraso-card__motivo p {
+    line-height: 1.6;
+}
+
+/* Responsável */
+
+.atraso-card__responsavel {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    padding-top: 16px;
+    border-top: 1px solid #e7edf5;
+}
+
+/* Telas maiores */
+
+@media (min-width: 520px) {
+    .atrasos-list {
+        padding: 24px 20px;
+    }
+
+    .atraso-card {
+        padding: 22px;
+    }
+
+    .atraso-card__responsavel {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 16px;
+    }
+}
+
+
+.atraso-card__acoes {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 16px;
+    padding-top: 14px;
+    border-top: 1px solid #e7edf5;
+}
+
+.atraso-card__botao-delete {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 10px 14px;
+    border: 1px solid #dc3545;
+    border-radius: 8px;
+    background: #ffffff;
+    color: #c62828;
+    font-size: 0.875rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition:
+        background-color 0.2s ease,
+        color 0.2s ease,
+        border-color 0.2s ease;
+}
+
+.atraso-card__botao-delete:hover {
+    background: #c62828;
+    border-color: #c62828;
+    color: #ffffff;
+}
+
+.atraso-card__botao-delete:focus-visible {
+    outline: 3px solid var(--color-accent);
+    outline-offset: 3px;
+}
+
+.atraso-card__botao-delete:active {
+    transform: scale(0.98);
+}

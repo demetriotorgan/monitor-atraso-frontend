@@ -1,7 +1,9 @@
+import './AtrasosList.css'
 import { useEffect, useState } from "react";
 import { useAtrasos } from "../../hooks/useAtrasos"
 import Spinner from "../Spinner/Spinner";
 import Resultado from "../Resultado/Resultado";
+import AtrasoCard from "./AtrasoCard/AtrasoCard";
 
 const AtrasosList = () => {
   const { atrasos, carregando, erro, buscarAtrasos } = useAtrasos();
@@ -21,15 +23,21 @@ const AtrasosList = () => {
     return <Spinner loading={carregando} />
   }
 
+  function deletarAtraso(id:number){
+    console.log('Excluir registro', id);
+  }
+
   return (
     <section className="atarsos-list">
       <h2 className="atraso-list_titulo">Atrasos Registrados</h2>
       <div className="atraso-list_cards">
         {atrasos.length > 0 ? (
           atrasos.map((atraso) => (
-            <div key={atraso.id}>
-              <p>{atraso.nome}</p>
-            </div>
+            <AtrasoCard
+              key={atraso.id}
+              atraso={atraso}
+              onDelete={deletarAtraso}
+            />
           ))
         ) : (
           <p>Nenhum registro cadastrado</p>

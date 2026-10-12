@@ -6,6 +6,8 @@ import type { Aluno } from '../../hooks/useAlunos';
 import BuscaAluno from '../BuscaAluno/BuscaAluno';
 import type { FormEvent } from "react";
 import { registrarAtraso, type NovoAtraso } from '../../service/api';
+import Resultado from '../Resultado/Resultado';
+import Spinner from '../Spinner/Spinner';
 
 type TipoMensagem = {
   tipo: 'sucesso' | 'erro',
@@ -62,6 +64,8 @@ const AtrasoForm = () => {
   }
 
   return (
+    <>
+    <Spinner loading={enviando} />
     <section className="atraso-form-container">
       <h2 className="atraso-form-title"><FileClock /> Registrar atraso</h2>
 
@@ -169,26 +173,22 @@ const AtrasoForm = () => {
               setMensagem(null);
             }}
           />
-        </div>
-
-        {mensagem && (
-          <p
-            role="status"
-            className={
-              mensagem.tipo === 'erro'
-                ? 'atraso-form-mensagem atraso-form-mensagem--erro'
-                : 'atraso-form-mensagem atraso-form-mensagem--sucesso'
-            }
-          >
-            {mensagem.texto}
-          </p>
-        )}
+        </div>       
 
         <button className="btn btn-primary" type="submit" disabled={enviando}>
           {enviando ? 'Registrando...': 'Registrar atraso'}
         </button>
       </form>
+
+      {mensagem && (
+        <Resultado
+          mensagem={mensagem.texto}
+          tipo={mensagem.tipo}
+          onClose={()=>setMensagem(null)}
+        />
+      )}
     </section>
+    </>
   )
 }
 

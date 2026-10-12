@@ -8,6 +8,7 @@ import AlunoCard from './AlunoCard/AlunoCard';
 import BuscaAluno from '../BuscaAluno/BuscaAluno';
 import { useDeleteAluno } from '../../hooks/useDeleteAluno';
 import Resultado from '../Resultado/Resultado';
+import { ClipboardList } from 'lucide-react';
 
 const AlunoList = () => {
     const {
@@ -27,18 +28,18 @@ const AlunoList = () => {
 
     const [alunoSelecionado, setAlunoSelecionado] =
         useState<Aluno | null>(null);
-    
+
     const [mostrarErro, setMostrarErro] = useState(false);
 
     useEffect(() => {
         buscarAlunos();
     }, []);
 
-    useEffect(()=>{
-        if(erro){
+    useEffect(() => {
+        if (erro) {
             setMostrarErro(true);
         }
-    },[erro]);
+    }, [erro]);
 
     async function handleDelete(id: number) {
         try {
@@ -67,20 +68,20 @@ const AlunoList = () => {
     const alunosExibidos = alunoSelecionado
         ? [alunoSelecionado]
         : alunos.toReversed();
-    
 
-     const mensagemResultado =
+
+    const mensagemResultado =
         erroDelete ?? sucesso ?? (mostrarErro ? erro : null);
 
-      const tipoResultado =
+    const tipoResultado =
         erroDelete || (mostrarErro && erro)
             ? 'erro'
             : 'sucesso';
 
-    function fecharResultado(){
-        if(erroDelete || sucesso){
+    function fecharResultado() {
+        if (erroDelete || sucesso) {
             limparResultado();
-        }else{
+        } else {
             setMostrarErro(false);
         }
     }
@@ -106,7 +107,15 @@ const AlunoList = () => {
                             />
                         ))
                     ) : (
-                        <p>Nenhum aluno cadastrado.</p>
+                        <div className="atrasos-vazio">
+                            <div className="atrasos-vazio__icone">
+                                <ClipboardList size={32} />
+                            </div>
+                            <h3>Nenhum aluno registrado</h3>
+                            <p>
+                                Ainda não há registros de alunos para exibir.
+                            </p>
+                        </div>
                     )}
                 </div>
             </section>

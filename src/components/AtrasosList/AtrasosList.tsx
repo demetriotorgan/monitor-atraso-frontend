@@ -4,27 +4,43 @@ import { useAtrasos } from "../../hooks/useAtrasos"
 import Spinner from "../Spinner/Spinner";
 import Resultado from "../Resultado/Resultado";
 import AtrasoCard from "./AtrasoCard/AtrasoCard";
+import { useDeleteRegistro } from '../../hooks/useDeleteRegistro';
+import { ClipboardList } from 'lucide-react';
 
 const AtrasosList = () => {
   const { atrasos, carregando, erro, buscarAtrasos } = useAtrasos();
-  const [mostrarErro, setMostrarErro] = useState(false);
+  const { excluirAtraso, loading, erro: erroDeletar, sucesso, limparResultado } = useDeleteRegistro();
+  const [mostrarResultado, setMostrarResultado] = useState(false);
 
   useEffect(() => {
     buscarAtrasos()
   }, []);
 
   useEffect(() => {
-    if (erro) {
-      setMostrarErro(true);
+    if (erro || erroDeletar || sucesso) {
+      setMostrarResultado(true);
     }
-  }, [erro]);
+  }, [erro, erroDeletar, sucesso]);
 
-  if (carregando) {
-    return <Spinner loading={carregando} />
+  async function deletarAtraso(id: number) {
+    const excluido = await excluirAtraso(id);
+    if (excluido) {
+      await buscarAtrasos();
+    }
   }
 
-  function deletarAtraso(id:number){
-    console.log('Excluir registro', id);
+  function fecharResultado() {
+    setMostrarResultado(false);
+    limparResultado();
+  }
+
+  const mensagemResultado = erroDeletar || sucesso || erro;
+
+  const tipoResultado: 'sucesso' | 'erro' =
+    erroDeletar || erro ? 'erro' : 'sucesso';
+
+  if (carregando || loading) {
+    return <Spinner loading={carregando} />
   }
 
   return (
@@ -40,14 +56,22 @@ const AtrasosList = () => {
             />
           ))
         ) : (
-          <p>Nenhum registro cadastrado</p>
+          <div className="atrasos-vazio">
+            <div className="atrasos-vazio__icone">
+              <ClipboardList size={32} />
+            </div>
+            <h3>Nenhum atraso registrado</h3>
+            <p>
+              Ainda não há registros de atrasos para exibir.
+            </p>
+          </div>
         )}
       </div>
-      {erro && mostrarErro && (
+      {mensagemResultado && mostrarResultado && (
         <Resultado
-          mensagem={erro}
-          tipo='erro'
-          onClose={() => setMostrarErro(false)}
+          mensagem={mensagemResultado}
+          tipo={tipoResultado}
+          onClose={fecharResultado}
         />
       )}
     </section>

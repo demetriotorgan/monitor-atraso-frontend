@@ -54,4 +54,8 @@ export async function getAtrasos(){
     return response.data
 }
 
+export async function deleteAtraso(id:number){
+    const response = await api.delete(`/atrasos/${id}`)
+    return response.data
+}
 

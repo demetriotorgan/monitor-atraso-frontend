@@ -32,7 +32,7 @@ const AtrasosList = () => {
       <h2 className="atraso-list_titulo">Atrasos Registrados</h2>
       <div className="atraso-list_cards">
         {atrasos.length > 0 ? (
-          atrasos.map((atraso) => (
+          atrasos.toReversed().map((atraso) => (
             <AtrasoCard
               key={atraso.id}
               atraso={atraso}

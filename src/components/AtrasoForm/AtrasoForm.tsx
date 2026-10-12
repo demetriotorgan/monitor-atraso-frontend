@@ -1,8 +1,13 @@
 
 import { FileClock, FileText, SquarePen, UserPen } from 'lucide-react'
 import './AtrasoForm.css'
+import { useState } from 'react'
+import type { Aluno } from '../../hooks/useAlunos';
+import BuscaAluno from '../BuscaAluno/BuscaAluno';
 
 const AtrasoForm = () => {
+  const [alunoSelecionado, setAlunoSelecionado] = useState<Aluno | null>(null);
+
   return (
     <section className="atraso-form-container">
       <h2 className="atraso-form-title"><FileClock /> Registrar atraso</h2>
@@ -18,14 +23,7 @@ const AtrasoForm = () => {
             <UserPen /> Nome do aluno
           </label>
 
-          <input
-            className="form-input"
-            type="text"
-            id="buscar-aluno"
-            name="buscar-aluno"
-            placeholder="Digite o nome do aluno..."
-            autoComplete="off"
-          />
+          <BuscaAluno onSelecionarAluno={setAlunoSelecionado} />
         </div>
 
         {/* Dados do aluno selecionado */}
@@ -44,6 +42,7 @@ const AtrasoForm = () => {
               name="nome-aluno"
               placeholder="Nome do aluno"
               readOnly
+              value={alunoSelecionado?.nome ?? ''}
             />
           </div>
 
@@ -59,6 +58,7 @@ const AtrasoForm = () => {
               name="serie-aluno"
               placeholder="Série"
               readOnly
+              value={alunoSelecionado?.serie ?? ''}
             />
           </div>
 
@@ -74,6 +74,7 @@ const AtrasoForm = () => {
               name="responsavel-aluno"
               placeholder="Nome do responsável"
               readOnly
+              value={alunoSelecionado?.responsavel ?? ''}
             />
           </div>
 
@@ -92,6 +93,7 @@ const AtrasoForm = () => {
               name="telefone-responsavel"
               placeholder="Telefone do responsável"
               readOnly
+              value={alunoSelecionado?.telefone_responsavel ?? ''}
             />
           </div>
         </fieldset>

@@ -14,7 +14,7 @@ export function useAlunos(){
     const [carregando, setCarregando] = useState(false);
     const [erro, setErro] = useState<string | null>(null);
 
-    async function buscarAlunos() {
+    async function buscarAlunos(): Promise<Aluno[] | undefined> {
         setCarregando(true);
         setErro(null);
 
@@ -23,7 +23,8 @@ export function useAlunos(){
         setAlunos(dados);
         return dados;
         } catch (error) {
-            setErro('Erro ao buscar alunos');            
+            setErro('Erro ao buscar alunos');  
+            return undefined;          
         }finally {
             setCarregando(false);
         }

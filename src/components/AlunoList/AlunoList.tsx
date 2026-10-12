@@ -27,10 +27,18 @@ const AlunoList = () => {
 
     const [alunoSelecionado, setAlunoSelecionado] =
         useState<Aluno | null>(null);
+    
+    const [mostrarErro, setMostrarErro] = useState(false);
 
     useEffect(() => {
-        buscarAlunos().catch(() => {});
+        buscarAlunos();
     }, []);
+
+    useEffect(()=>{
+        if(erro){
+            setMostrarErro(true);
+        }
+    },[erro]);
 
     async function handleDelete(id: number) {
         try {
@@ -52,10 +60,6 @@ const AlunoList = () => {
         return <Spinner loading={carregando} />;
     }
 
-    if (erro) {
-        return <p>{erro}</p>;
-    }
-
     if (loading) {
         return <Spinner loading={loading} />;
     }
@@ -63,6 +67,23 @@ const AlunoList = () => {
     const alunosExibidos = alunoSelecionado
         ? [alunoSelecionado]
         : alunos.toReversed();
+    
+
+     const mensagemResultado =
+        erroDelete ?? sucesso ?? (mostrarErro ? erro : null);
+
+      const tipoResultado =
+        erroDelete || (mostrarErro && erro)
+            ? 'erro'
+            : 'sucesso';
+
+    function fecharResultado(){
+        if(erroDelete || sucesso){
+            limparResultado();
+        }else{
+            setMostrarErro(false);
+        }
+    }
 
     return (
         <>
@@ -90,11 +111,11 @@ const AlunoList = () => {
                 </div>
             </section>
 
-            {(erroDelete || sucesso) && (
+            {mensagemResultado && (
                 <Resultado
-                    mensagem={erroDelete ?? sucesso ?? ''}
-                    tipo={erroDelete ? 'erro' : 'sucesso'}
-                    onClose={limparResultado}
+                    mensagem={mensagemResultado}
+                    tipo={tipoResultado}
+                    onClose={fecharResultado}
                 />
             )}
         </>

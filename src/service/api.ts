@@ -48,3 +48,10 @@ export async function registrarAtraso(atraso: NovoAtraso){
     const response = await api.post('/atrasos/', atraso)
     return response.data
 }
+
+export async function getAtrasos(){
+    const response = await api.get('/atrasos/');
+    return response.data
+}
+
+

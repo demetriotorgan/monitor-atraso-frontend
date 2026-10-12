@@ -7,6 +7,11 @@ export interface NovoAluno{
     telefone_responsavel: string;
 }
 
+export interface NovoAtraso{
+    aluno_id:number,
+    motivo:string
+}
+
 const api = axios.create({
     baseURL: 'https://api.134.65.254.177.nip.io/',
     timeout: 5000,
@@ -39,4 +44,7 @@ export async function buscarAlunoPorNome(nome:string){
     return response.data
 }
 
-
+export async function registrarAtraso(atraso: NovoAtraso){
+    const response = await api.post('/atrasos/', atraso)
+    return response.data
+}

@@ -1,67 +1,25 @@
-import { useEffect, useState } from 'react';
-import { Search, X } from 'lucide-react';
-
-import { useBuscarAluno } from '../../hooks/useBuscarAluno';
-import type { Aluno } from '../../hooks/useAlunos';
-
 import './BuscaAluno.css';
+import { Clock, Search, X } from 'lucide-react';
+
+import type { Aluno } from '../../hooks/useAlunos';
+import { useListaAluno } from '../../hooks/useListaAluno';
 
 interface BuscaAlunoProps {
     onSelecionarAluno?: (aluno: Aluno | null) => void;
 }
 
-const BuscaAluno = ({
-    onSelecionarAluno,
-}: BuscaAlunoProps) => {
-    const [nome, setNome] = useState('');
-    const [alunoSelecionado, setAlunoSelecionado] =
-        useState<Aluno | null>(null);
-    const [listaAberta, setListaAberta] = useState(false);
-
-    const { resultados, carregando, erro, buscarPorNome, limparBusca } =
-        useBuscarAluno();
-
-    useEffect(() => {
-        const termo = nome.trim();
-
-        if (!termo || alunoSelecionado) {
-            limparBusca();
-            setListaAberta(false);
-            return;
-        }
-
-        const temporizador = setTimeout(() => {
-            void buscarPorNome(termo);
-            setListaAberta(true);
-        }, 300);
-
-        return () => clearTimeout(temporizador);
-    }, [nome, alunoSelecionado, buscarPorNome, limparBusca]);
-
-    function handleSelecionarAluno(aluno: Aluno) {
-        setAlunoSelecionado(aluno);
-        setNome(aluno.nome);
-        setListaAberta(false);
-
-        onSelecionarAluno?.(aluno);
-    }
-
-    function handleAlterarBusca(valor: string) {
-        setNome(valor);
-        setAlunoSelecionado(null);
-        setListaAberta(Boolean(valor.trim()));
-
-        onSelecionarAluno?.(null);
-    }
-
-    function handleLimparBusca() {
-        setNome('');
-        setAlunoSelecionado(null);
-        setListaAberta(false);
-        limparBusca();
-
-        onSelecionarAluno?.(null);
-    }
+const BuscaAluno = ({onSelecionarAluno}: BuscaAlunoProps) => {
+    const {
+        nome, 
+        alunoSelecionado, 
+        listaAberta, 
+        resultados, 
+        carregando, 
+        erro, 
+        alterarBusca, 
+        selecionarAluno, 
+        limparBusca, 
+        abrirLista} = useListaAluno({onSelecionarAluno});
 
     return (
         <section className="busca-aluno">
@@ -83,13 +41,9 @@ const BuscaAluno = ({
                     type="text"
                     value={nome}
                     onChange={(evento) =>
-                        handleAlterarBusca(evento.target.value)
+                        alterarBusca(evento.target.value)
                     }
-                    onFocus={() => {
-                        if (nome.trim() && !alunoSelecionado) {
-                            setListaAberta(true);
-                        }
-                    }}
+                    onFocus={abrirLista}
                     placeholder="Digite o nome do aluno"
                     autoComplete="off"
                     aria-autocomplete="list"
@@ -101,7 +55,7 @@ const BuscaAluno = ({
                     <button
                         type="button"
                         className="busca-aluno__limpar"
-                        onClick={handleLimparBusca}
+                        onClick={limparBusca}
                         aria-label="Limpar busca"
                         title="Limpar busca"
                     >
@@ -119,7 +73,7 @@ const BuscaAluno = ({
                 >
                     {carregando && (
                         <p className="busca-aluno__mensagem">
-                            Buscando alunos...
+                            <Clock size={15} /> Buscando alunos...
                         </p>
                     )}
 
@@ -147,7 +101,7 @@ const BuscaAluno = ({
                                 aria-selected={false}
                                 className="busca-aluno__opcao"
                                 onClick={() =>
-                                    handleSelecionarAluno(aluno)
+                                    selecionarAluno(aluno)
                                 }
                             >
                                 {aluno.nome}

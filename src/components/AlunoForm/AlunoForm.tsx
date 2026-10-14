@@ -57,15 +57,18 @@ const {formulario, handleChange, handleSubmit, enviando, mensagem, tipoMensagem,
         <option value="1ANO">1ANO</option>
         <option value="1TDS">1TDS</option>
         <option value="1FD">1FD</option>
+        <option value="1FD">1GAST.</option>
         <option value="2ANO">2ANO</option>
         <option value="2TDS">2TDS</option>
+        <option value="1FD">2GAST.</option>
         <option value="2FD">2FD</option>
         <option value="3A">3A</option>
-        <option value="3TDS">3TDS</option>
-        <option value="3FD">3FD</option>
-        <option value="3B">3B</option>
+         <option value="3B">3B</option>
         <option value="3C">3C</option>
         <option value="3D">3D</option>
+        <option value="3TDS">3TDS</option>
+        <option value="3FD">3FD</option>
+        <option value="1FD">3GAST.</option>       
       </select>
 
       <label className="form-label" htmlFor="responsavel">

@@ -25,7 +25,7 @@ export function useCadastrarAluno() {
     if (name === 'telefone') {
       const telefoneNumerico = value
         .replace(/\D/g, '')
-        .slice(0, 9); // Limita a 9 dígitos 
+        .slice(0, 12); // Limita a 12 dígitos 
 
       setFormulario(prevFormulario => ({
         ...prevFormulario,
@@ -74,7 +74,7 @@ export function useCadastrarAluno() {
         nome,
         serie,
         responsavel,
-        telefone_responsavel: `5544${telefone}`
+        telefone_responsavel: `55${telefone}`
       };
 
       await salvarAluno(novoAluno);

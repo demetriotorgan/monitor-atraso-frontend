@@ -1,8 +1,8 @@
 type FormularioAluno = {
-    nome: String;
-    serie: String;
-    responsavel: String;
-    telefone: String;
+    nome: string;
+    serie: string;
+    responsavel: string;
+    telefone: string;
 };
 
 export function validarAluno(formulario: FormularioAluno): string | null {
@@ -30,7 +30,7 @@ export function validarAluno(formulario: FormularioAluno): string | null {
     }
 
     //3. Validar o formato do telefone
-    if (!/^\d{9}$/.test(telefone)) {
+    if (!/^\d{11,12}$/.test(telefone)) {
         return 'O telefone deve conter exatamente 9 dígitos numéricos.';
     }
     return null;

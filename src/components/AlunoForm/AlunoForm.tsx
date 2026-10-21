@@ -95,7 +95,7 @@ const {formulario, handleChange, handleSubmit, enviando, mensagem, tipoMensagem,
         type="tel"
         inputMode="numeric"
         maxLength={12}
-        pattern="[0-9]{12}"
+        pattern="[0-9]{11,12}"
         placeholder="44991594322"
         value={formulario.telefone}
         onChange={handleChange}

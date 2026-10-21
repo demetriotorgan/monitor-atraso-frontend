@@ -94,9 +94,9 @@ const {formulario, handleChange, handleSubmit, enviando, mensagem, tipoMensagem,
         name="telefone"
         type="tel"
         inputMode="numeric"
-        maxLength={9}
-        pattern="[0-9]{9}"
-        placeholder="991594322"
+        maxLength={12}
+        pattern="[0-9]{12}"
+        placeholder="44991594322"
         value={formulario.telefone}
         onChange={handleChange}
         required
